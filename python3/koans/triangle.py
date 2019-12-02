@@ -17,6 +17,12 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
+    if a <= 0 or b <= 0 or c <= 0:
+        raise TriangleError
+    a, b, c = sorted([a, b, c])
+    if a + b <= c:
+        raise TriangleError
+
     unique = len({a, b, c})
     if unique == 1:
         return 'equilateral'
