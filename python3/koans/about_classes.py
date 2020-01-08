@@ -143,6 +143,7 @@ class AboutClasses(Koan):
         fido = self.Dog6("Fido")
 
         self.assertEqual(fido, fido.get_self())  # Not a string!
+        self.assertIs(fido, fido.get_self())  # Not a string!
 
     def test_str_provides_a_string_version_of_the_object(self):
         fido = self.Dog6("Fido")
