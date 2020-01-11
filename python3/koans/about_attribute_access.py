@@ -90,7 +90,7 @@ class AboutAttributeAccess(Koan):
         def __init__(self):
             global stack_depth
             stack_depth = 0
-            self.no_of_getattribute_calls = 0
+            self.no_of_getattribute_calls = 0 # __setattr__
 
         def __getattribute__(self, attr_name):
             # We need something that is outside the scope of this class:
@@ -98,12 +98,11 @@ class AboutAttributeAccess(Koan):
             stack_depth += 1
 
             if stack_depth<=10: # to prevent a stack overflow
-                self.no_of_getattribute_calls += 1
+                self.no_of_getattribute_calls += 1 # __getattribute__
                 # Oops! We just accessed an attribute (no_of_getattribute_calls)
                 # Guess what happens when self.no_of_getattribute_calls is
                 # accessed?
 
-            # Using 'object' directly because using super() here will also
             # trigger a __getattribute__() call.
             return object.__getattribute__(self, attr_name)
 
