@@ -36,14 +36,15 @@ class Proxy:
         return getattr(self._obj, name)
 
     def __setattr__(self, name, value):
-        object.__setattr__(self, name, value)
         self._messages.append(name)
+        setattr(self._obj, name, value)
 
     def was_called(self, name):
         return name in self._messages
 
     def number_of_times_called(self, name):
         return self._messages.count(name)
+
 
 # The proxy object should pass the following Koan:
 #
