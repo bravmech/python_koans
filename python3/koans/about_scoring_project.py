@@ -43,6 +43,8 @@ def score(dice):
         elif v >= 3:
             res += k * 100
             v -= 3
+        if v == 0:
+            continue
 
         if k == 1:
             res += v * 100
